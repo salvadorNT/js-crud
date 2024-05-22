@@ -15,4 +15,4 @@ document.querySelector('#app').innerHTML = `
     </div>
   </div>
 `
-
+const element = document.querySelector('.card');
