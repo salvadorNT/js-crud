@@ -34,9 +34,7 @@ const onUserChanged = (updatedUser) => {
     let wasFound = false;
 
     state.users = state.users.map(user => {
-        console.log(user);
         if (user.id === updatedUser.id) {
-            console.log(wasFound);
             wasFound = true;
             return updatedUser;
         }
@@ -48,8 +46,14 @@ const onUserChanged = (updatedUser) => {
     }
 }
 
-const reloadPage = () => {
-    throw new Error('Not implemented');
+const reloadPage = async () => {
+    const data = await loadUsersByPage(state.currentPage);
+
+    if (data.pages === 0) {
+        state.users = [];
+        return;
+    };
+    state.users = data.data;
 }
 
 export default {
